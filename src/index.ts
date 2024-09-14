@@ -10,6 +10,7 @@ function allSpaces(str: string): boolean {
   return /^\s*$/.test(str);
 }
 
+/// 半角文字と全角文字の境界で分割する
 function splitHalfAndFull(input: string, fullChars: string): string[] {
   return input.split(
     new RegExp(
@@ -59,16 +60,16 @@ const rehypeTextAutospace: Plugin<[Options?], Root> = (options) => (tree) => {
     for (let i = 0; i < parts.length; i++) {
       let padding: Padding;
       if (partTypes[i] === 'half') {
-        // 英語なら padding は不要
+        // 半角なら padding は不要
         padding = [false, false];
       } else if (partTypes[i - 1] === 'half' && partTypes[i + 1] === 'half') {
-        // 両隣が存在して、両方英語である場合
+        // 両隣が存在して、両方半角である場合
         padding = [true, true];
       } else if (partTypes[i - 1] === 'half') {
-        // 左隣の part が存在していて、英語である場合
+        // 左隣の part が存在していて、半角である場合
         padding = [true, false];
       } else if (partTypes[i + 1] === 'half') {
-        // 右隣の part が存在していて、英語である場合
+        // 右隣の part が存在していて、半角である場合
         padding = [false, true];
       } else {
         padding = [false, false];
