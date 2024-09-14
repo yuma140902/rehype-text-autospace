@@ -3,9 +3,9 @@ import { rehype } from 'rehype';
 import { describe, expect, it } from 'vitest';
 import rehypeTextAutospace from './index';
 
-const bothStyle = { style: 'padding-right:0.125em;padding-left:0.125em;' };
-const leftStyle = { style: 'padding-left:0.125em;' };
-const rightStyle = { style: 'padding-right:0.125em;' };
+const bothStyle = { style: 'padding-right:.125em;padding-left:.125em' };
+const leftStyle = { style: 'padding-left:.125em' };
+const rightStyle = { style: 'padding-right:.125em' };
 
 describe('Single element tests', () => {
   it('full', async () => {

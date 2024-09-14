@@ -19,9 +19,19 @@ function splitJapaneseAndEnglish(input: string): string[] {
 type PartType = 'english' | 'japanese';
 type Padding = [boolean, boolean];
 
-export type Options = {};
+export type Options = {
+  padding?: string;
+};
 
-const rehypeTextAutospace: Plugin<[Options?], Root> = (_options) => (tree) => {
+const resolveOptions = (options?: Options): Required<Options> => {
+  return {
+    padding: options?.padding ?? '.125em',
+  };
+};
+
+const rehypeTextAutospace: Plugin<[Options?], Root> = (options) => (tree) => {
+  const opts = resolveOptions(options);
+
   visit(tree, (node, index, parent) => {
     if (node.type === 'element') {
       // pre, code, ruby タグ内のテキストはスキップ
@@ -86,7 +96,7 @@ const rehypeTextAutospace: Plugin<[Options?], Root> = (_options) => (tree) => {
           type: 'element',
           tagName: 'span',
           properties: {
-            style: 'padding-right:0.125em;padding-left:0.125em;',
+            style: `padding-right:${opts.padding};padding-left:${opts.padding}`,
           },
           children: [
             {
@@ -100,7 +110,7 @@ const rehypeTextAutospace: Plugin<[Options?], Root> = (_options) => (tree) => {
           type: 'element',
           tagName: 'span',
           properties: {
-            style: 'padding-left:0.125em;',
+            style: `padding-left:${opts.padding}`,
           },
           children: [
             {
@@ -114,7 +124,7 @@ const rehypeTextAutospace: Plugin<[Options?], Root> = (_options) => (tree) => {
           type: 'element',
           tagName: 'span',
           properties: {
-            style: 'padding-right:0.125em;',
+            style: `padding-right:${opts.padding}`,
           },
           children: [
             {
