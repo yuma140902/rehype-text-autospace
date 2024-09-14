@@ -1,6 +1,6 @@
 {
   "name": "rehype-text-autospace",
-  "private": true,
+  "private": false,
   "version": "1.0.0",
   "author": "yuma140902",
   "license": "MIT",
@@ -8,6 +8,7 @@
     "type": "git",
     "url": "https://github.com/yuma140902/rehype-text-autospace"
   },
+  "keywords": ["rehype"],
   "type": "module",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
