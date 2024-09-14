@@ -2,7 +2,7 @@
 
 [![CI](https://github.com/yuma140902/rehype-text-autospace/actions/workflows/CI.yml/badge.svg)](https://github.com/yuma140902/rehype-text-autospace/actions/workflows/CI.yml)
 
-日本語と英語の間に自動で間隔を開ける [rehype](https://github.com/rehypejs/rehype) プラグインです。
+日本語と英語の間に間隔を開ける [rehype](https://github.com/rehypejs/rehype) プラグインです。
 
 ## インストール
 
