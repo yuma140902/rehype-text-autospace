@@ -1,6 +1,7 @@
 # rehype-text-autospace
 
 [![CI](https://github.com/yuma140902/rehype-text-autospace/actions/workflows/CI.yml/badge.svg)](https://github.com/yuma140902/rehype-text-autospace/actions/workflows/CI.yml)
+[![NPM Version](https://img.shields.io/npm/v/rehype-text-autospace)](https://www.npmjs.com/package/rehype-text-autospace)
 
 日本語と英語の間に間隔を開ける [rehype](https://github.com/rehypejs/rehype) プラグインです。
 
