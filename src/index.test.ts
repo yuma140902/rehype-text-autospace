@@ -1,6 +1,6 @@
-import { describe, it, expect } from 'vitest';
 import { h } from 'hastscript';
 import { rehype } from 'rehype';
+import { describe, expect, it } from 'vitest';
 import rehypeTextAutospace from './index';
 
 const bothStyle = { style: 'padding-right:0.125em;padding-left:0.125em;' };

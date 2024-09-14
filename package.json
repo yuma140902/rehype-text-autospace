@@ -25,7 +25,8 @@
     "build": "tsc",
     "prepare": "pnpm run build",
     "test": "vitest run",
-    "coverage": "vitest run --coverage"
+    "coverage": "vitest run --coverage",
+    "lint": "biome check ."
   },
   "devDependencies": {
     "@biomejs/biome": "1.9.0",

@@ -1,5 +1,5 @@
-import type { Plugin } from 'unified';
 import type { ElementContent, Root } from 'hast';
+import type { Plugin } from 'unified';
 import { CONTINUE, SKIP, visit } from 'unist-util-visit';
 
 function allAscii(str: string): boolean {
@@ -33,7 +33,7 @@ const rehypeTextAutospace: Plugin<[Options?], Root> = (_options) => (tree) => {
       return CONTINUE;
     }
 
-    let newChildren: ElementContent[] = [];
+    const newChildren: ElementContent[] = [];
     const parts = splitJapaneseAndEnglish(node.value).filter(
       (part) => !allSpaces(part),
     );
