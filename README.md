@@ -12,7 +12,9 @@ npm install rehype-text-autospace
 
 ## 使用方法
 
-### [unified](https://github.com/unifiedjs/unified)
+### unified
+
+[unified](https://github.com/unifiedjs/unified) での使用例です。
 
 ```js
 import rehypeStringify from 'rehype-stringify'
@@ -29,7 +31,9 @@ const file = await unified()
 console.log(String(file))
 ```
 
-### [Astro](https://astro.build/)
+### Astro
+
+[Astro](https://astro.build/) で使用するときの設定例です。
 
 `astro.config.mjs`
 
@@ -49,7 +53,7 @@ export default defineConfig({
 
 ## 動作例
 
-以下のマークダウンを処理した結果です。
+以下のマークダウンを rehype-text-autospace を使用して処理した結果と使用せずに処理した結果の比較です。
 
 ```md
 # rehype-text-autospaceとは
