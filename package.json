@@ -28,6 +28,7 @@
     "coverage": "vitest run --coverage"
   },
   "devDependencies": {
+    "@biomejs/biome": "1.9.0",
     "@types/hast": "^3.0.4",
     "@vitest/coverage-v8": "^2.1.1",
     "hast-util-to-html": "^9.0.2",
