@@ -10,7 +10,7 @@ function allSpaces(str: string): boolean {
   return /^\s*$/.test(str);
 }
 
-function splitJapaneseAndEnglish(input: string, fullChars: string): string[] {
+function splitHalfAndFull(input: string, fullChars: string): string[] {
   return input.split(
     new RegExp(
       `(?<=[${fullChars}])\\s?(?=[\\x20-\\x7F])|(?<=[\\x20-\\x7F])\\s?(?=[${fullChars}])`,
@@ -19,7 +19,7 @@ function splitJapaneseAndEnglish(input: string, fullChars: string): string[] {
   );
 }
 
-type PartType = 'english' | 'japanese';
+type PartType = 'half' | 'full';
 type Padding = [boolean, boolean];
 
 export type Options = {
@@ -50,34 +50,31 @@ const rehypeTextAutospace: Plugin<[Options?], Root> = (options) => (tree) => {
     }
 
     const newChildren: ElementContent[] = [];
-    const parts = splitJapaneseAndEnglish(node.value, opts.fullChars).filter(
+    const parts = splitHalfAndFull(node.value, opts.fullChars).filter(
       (part) => !allSpaces(part),
     );
     const partTypes: PartType[] = parts.map((part) =>
-      allAscii(part) ? 'english' : 'japanese',
+      allAscii(part) ? 'half' : 'full',
     );
     for (let i = 0; i < parts.length; i++) {
       let padding: Padding;
-      if (partTypes[i] === 'english') {
+      if (partTypes[i] === 'half') {
         // 英語なら padding は不要
         padding = [false, false];
-      } else if (
-        partTypes[i - 1] === 'english' &&
-        partTypes[i + 1] === 'english'
-      ) {
+      } else if (partTypes[i - 1] === 'half' && partTypes[i + 1] === 'half') {
         // 両隣が存在して、両方英語である場合
         padding = [true, true];
-      } else if (partTypes[i - 1] === 'english') {
+      } else if (partTypes[i - 1] === 'half') {
         // 左隣の part が存在していて、英語である場合
         padding = [true, false];
-      } else if (partTypes[i + 1] === 'english') {
+      } else if (partTypes[i + 1] === 'half') {
         // 右隣の part が存在していて、英語である場合
         padding = [false, true];
       } else {
         padding = [false, false];
       }
       if (
-        partTypes[i] === 'japanese' &&
+        partTypes[i] === 'full' &&
         i === 0 &&
         i === parts.length - 1 &&
         index - 1 >= 0 &&
@@ -85,11 +82,11 @@ const rehypeTextAutospace: Plugin<[Options?], Root> = (options) => (tree) => {
       ) {
         // part は一つだけで、左右に兄弟要素が存在する場合
         padding = [true, true];
-      } else if (partTypes[i] === 'japanese' && i === 0 && index - 1 >= 0) {
+      } else if (partTypes[i] === 'full' && i === 0 && index - 1 >= 0) {
         // part が最左で、左に兄弟要素が存在する場合
         padding[0] = true;
       } else if (
-        partTypes[i] === 'japanese' &&
+        partTypes[i] === 'full' &&
         i === parts.length - 1 &&
         index + 1 < parent?.children?.length
       ) {
