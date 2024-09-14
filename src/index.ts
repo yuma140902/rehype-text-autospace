@@ -3,7 +3,7 @@ import type { Plugin } from 'unified';
 import { CONTINUE, SKIP, visit } from 'unist-util-visit';
 
 function allAscii(str: string): boolean {
-  return /^[\x00-\x7F]*$/.test(str);
+  return /^[\x20-\x7F]*$/.test(str);
 }
 
 function allSpaces(str: string): boolean {
@@ -12,7 +12,7 @@ function allSpaces(str: string): boolean {
 
 function splitJapaneseAndEnglish(input: string): string[] {
   return input.split(
-    /(?<=[\p{Script=Hiragana}\p{Script=Katakana}\p{Script=Han}、。「」（）])\s?(?=[\x00-\x7F])|(?<=[\x00-\x7F])\s?(?=[\p{Script=Hiragana}\p{Script=Katakana}\p{Script=Han}、。「」（）])/u,
+    /(?<=[\p{Script=Hiragana}\p{Script=Katakana}\p{Script=Han}、。「」（）])\s?(?=[\x20-\x7F])|(?<=[\x20-\x7F])\s?(?=[\p{Script=Hiragana}\p{Script=Katakana}\p{Script=Han}、。「」（）])/u,
   );
 }
 
