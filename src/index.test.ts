@@ -183,8 +183,6 @@ describe('Right hand side sibling', () => {
     expect(output).toEqual(expected);
   });
 
-  // TODO: 間にスペースが入っているパターンもテストを書く
-
   it('full, half, full', async () => {
     const input = h(null, h('p', ['あいうえおabc漢字', h('a', 'link')]));
     const output = await rehype().use(rehypeTextAutospace).run(input);
@@ -312,6 +310,25 @@ describe('Skip pre, code and ruby', () => {
     const input = h(null, [h('ruby', 'あいうえお')]);
     const output = await rehype().use(rehypeTextAutospace).run(input);
     const expected = h(null, h('ruby', 'あいうえお'));
+    expect(output).toEqual(expected);
+  });
+});
+
+describe('Replace spaces', () => {
+  it('full, half, full', async () => {
+    const input = h(null, h('p', [h('a', 'link'), 'あいうえお abc 漢字']));
+    const output = await rehype().use(rehypeTextAutospace).run(input);
+    const expected = h(
+      null,
+      h('p', [
+        h('a', h('span', 'link')),
+        h('span', [
+          h('span', bothStyle, 'あいうえお'),
+          'abc',
+          h('span', leftStyle, '漢字'),
+        ]),
+      ]),
+    );
     expect(output).toEqual(expected);
   });
 });

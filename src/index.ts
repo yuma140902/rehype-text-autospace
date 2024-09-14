@@ -10,9 +10,12 @@ function allSpaces(str: string): boolean {
   return /^\s*$/.test(str);
 }
 
-function splitJapaneseAndEnglish(input: string): string[] {
+function splitJapaneseAndEnglish(input: string, fullChars: string): string[] {
   return input.split(
-    /(?<=[\p{Script=Hiragana}\p{Script=Katakana}\p{Script=Han}、。「」（）])\s?(?=[\x20-\x7F])|(?<=[\x20-\x7F])\s?(?=[\p{Script=Hiragana}\p{Script=Katakana}\p{Script=Han}、。「」（）])/u,
+    new RegExp(
+      `(?<=[${fullChars}])\\s?(?=[\\x20-\\x7F])|(?<=[\\x20-\\x7F])\\s?(?=[${fullChars}])`,
+      'u',
+    ),
   );
 }
 
@@ -21,11 +24,14 @@ type Padding = [boolean, boolean];
 
 export type Options = {
   padding?: string;
+  fullChars?: string;
 };
 
 const resolveOptions = (options?: Options): Required<Options> => {
   return {
     padding: options?.padding ?? '.125em',
+    fullChars:
+      '\\p{Script=Hiragana}\\p{Script=Katakana}\\p{Script=Han}、。「」（）',
   };
 };
 
@@ -44,7 +50,7 @@ const rehypeTextAutospace: Plugin<[Options?], Root> = (options) => (tree) => {
     }
 
     const newChildren: ElementContent[] = [];
-    const parts = splitJapaneseAndEnglish(node.value).filter(
+    const parts = splitJapaneseAndEnglish(node.value, opts.fullChars).filter(
       (part) => !allSpaces(part),
     );
     const partTypes: PartType[] = parts.map((part) =>
