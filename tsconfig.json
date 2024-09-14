@@ -1,0 +1,29 @@
+{
+  "compilerOptions": {
+    "target": "ES2020",
+    "useDefineForClassFields": true,
+    "module": "NodeNext",
+    "skipLibCheck": true,
+    /* Bundler mode */
+    "moduleResolution": "NodeNext",
+    "allowImportingTsExtensions": false,
+    "isolatedModules": false,
+    "moduleDetection": "force",
+    "emitDeclarationOnly": false,
+    "declaration": true,
+    "declarationDir": "./dist",
+    "outDir": "./dist",
+    "noEmit": false,
+    /* Linting */
+    "strict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noFallthroughCasesInSwitch": true,
+  },
+  "include": [
+    "src/**/*.ts",
+  ],
+  "exclude": [
+    "src/**/*.test.ts",
+  ]
+}

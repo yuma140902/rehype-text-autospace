@@ -1,0 +1,44 @@
+{
+  "name": "rehype-text-autospace",
+  "private": true,
+  "version": "1.0.0",
+  "author": "yuma140902",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yuma140902/rehype-text-autospace"
+  },
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    }
+  },
+  "scripts": {
+    "build": "tsc",
+    "prepare": "pnpm run build",
+    "test": "vitest run",
+    "coverage": "vitest run --coverage"
+  },
+  "devDependencies": {
+    "@types/hast": "^3.0.4",
+    "@vitest/coverage-v8": "^2.1.1",
+    "hast-util-to-html": "^9.0.2",
+    "hastscript": "^9.0.0",
+    "rehype": "^13.0.1",
+    "typescript": "^5.5.3",
+    "unified": "^11.0.5",
+    "vitest": "^2.1.1"
+  },
+  "dependencies": {
+    "unist-util-visit": "^5.0.0"
+  },
+  "packageManager": "pnpm@8.15.4"
+}
