@@ -30,13 +30,13 @@
   "devDependencies": {
     "@biomejs/biome": "1.9.0",
     "@types/hast": "^3.0.4",
-    "@vitest/coverage-v8": "^2.1.1",
-    "hast-util-to-html": "^9.0.2",
+    "@vitest/coverage-v8": "^2.1.5",
+    "hast-util-to-html": "^9.0.3",
     "hastscript": "^9.0.0",
-    "rehype": "^13.0.1",
-    "typescript": "^5.5.3",
+    "rehype": "^13.0.2",
+    "typescript": "^5.6.3",
     "unified": "^11.0.5",
-    "vitest": "^2.1.1"
+    "vitest": "^2.1.5"
   },
   "dependencies": {
     "unist-util-visit": "^5.0.0"
