@@ -25,7 +25,8 @@
     "prepare": "pnpm run build",
     "test": "vitest run",
     "coverage": "vitest run --coverage",
-    "lint": "biome check ."
+    "lint": "biome check .",
+    "fix": "biome check --fix ."
   },
   "devDependencies": {
     "@biomejs/biome": "1.9.4",
@@ -41,5 +42,5 @@
   "dependencies": {
     "unist-util-visit": "^5.0.0"
   },
-  "packageManager": "pnpm@8.15.4"
+  "packageManager": "pnpm@10.27.0"
 }
